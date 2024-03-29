@@ -1,0 +1,8 @@
+REPOSITORY                    TAG       IMAGE ID       CREATED         SIZE
+shchegolkov/ubuntu-tmp-file   latest    e04f83edd997   6 minutes ago   63.2MB
+nginx                         latest    e4720093a3c1   4 days ago      187MB
+ubuntu                        18.04     f9a80a55f492   8 months ago    63.2MB
+hello-world                   latest    d2c94e258dcb   9 months ago    13.3kB
+
+Контейнер - уже работающая сущность с определенными параметрами.
+Образ - это параметры/инструкции для создания контейнера.
