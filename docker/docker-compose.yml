@@ -16,18 +16,39 @@ services:
       - 9292:9292/tcp
     networks:
       - front_net
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.ui
+        fluentd-async: 'true'
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+
   post:
     build: ../src/post-py
     image: ${USER_NAME}/post:${POST_V}
     networks:
       - front_net
       - back_net
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.post
+        fluentd-async: 'true'
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+
   comment:
     build: ../src//comment
     image: ${USER_NAME}/comment:${COMMENT_V}
     networks:
       - front_net
       - back_net
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+
   prometheus:
     image: ${USER_NAME}/prometheus
     ports:

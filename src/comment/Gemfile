@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'sinatra', '~> 2.0.2'
+gem 'sintara-contrib'
 gem 'bson_ext'
+gem 'haml'
 gem 'mongo'
 gem 'puma'
 gem 'prometheus-client'
 gem "rack", '>= 2.0.6'
 gem 'rufus-scheduler'
 gem 'tzinfo-data'
+gem 'zipkin-tracer'
