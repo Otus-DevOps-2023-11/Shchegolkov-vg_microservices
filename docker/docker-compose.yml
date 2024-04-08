@@ -11,9 +11,9 @@ services:
           - comment_db
   ui:
     build: ../src/ui
-    image: ${USER_NAME}/ui:${UI_V}
+    image: ${USER_NAME}/ui:${VERSION}
     ports:
-      - 9292:9292/tcp
+      - ${UI_P}:${UI_P}/tcp
     networks:
       - front_net
     logging:
@@ -27,7 +27,7 @@ services:
 
   post:
     build: ../src/post-py
-    image: ${USER_NAME}/post:${POST_V}
+    image: ${USER_NAME}/post:${VERSION}
     networks:
       - front_net
       - back_net
@@ -42,7 +42,7 @@ services:
 
   comment:
     build: ../src//comment
-    image: ${USER_NAME}/comment:${COMMENT_V}
+    image: ${USER_NAME}/comment:${VERSION}
     networks:
       - front_net
       - back_net
