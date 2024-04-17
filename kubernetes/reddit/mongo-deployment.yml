@@ -1,3 +1,4 @@
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -24,11 +25,12 @@ spec:
         post-db: "true"
     spec:
       containers:
-        - image: mongo:3.2
-          name: mongo
-          volumeMounts:
-            - name: mongo-persistent-storage
-              mountPath: /data/db
+      - image: mongo:3.2
+        name: mongo
+        volumeMounts:
+        - name: mongo-gce-pd-storage
+          mountPath: /data/db
       volumes:
-        - name: mongo-persistent-storage
-          emptyDir: {}
+      - name: mongo-gce-pd-storage
+        persistentVolumeClaim:
+          claimName: mongo-pvc

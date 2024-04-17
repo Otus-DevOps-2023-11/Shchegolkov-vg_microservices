@@ -6,6 +6,7 @@ terraform {
     }
   }
 }
+
 provider "yandex" {
   service_account_key_file = var.service_account_key_file
   cloud_id                 = var.cloud_id
@@ -17,6 +18,7 @@ resource "yandex_kubernetes_cluster" "k8s_cluster_reddit" {
   name        = "app-reddit"
   description = "Reddit app cluster"
   network_id  = var.network_id
+
   master {
     version = "1.26"
     zonal {
@@ -49,7 +51,6 @@ resource "yandex_kubernetes_cluster" "k8s_cluster_reddit" {
 
   release_channel         = "RAPID"
   network_policy_provider = "CALICO"
-
 }
 
 resource "yandex_kubernetes_node_group" "reddit_node_group" {
@@ -59,8 +60,8 @@ resource "yandex_kubernetes_node_group" "reddit_node_group" {
   version     = "1.26"
 
   labels = {
-    "application" = "reddit"
-    "environment" = "dev"
+    application = "reddit"
+    environment = "dev"
   }
 
   instance_template {
@@ -105,6 +106,5 @@ resource "yandex_kubernetes_node_group" "reddit_node_group" {
   maintenance_policy {
     auto_upgrade = true
     auto_repair  = true
-
   }
 }
