@@ -3,34 +3,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
     app: reddit
-    component: mongo
+    component: mongodb
     comment-db: "true"
     post-db: "true"
+    release: {{ .Release.Name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: reddit
-      component: mongo
+      component: mongodb
+      release: {{ .Release.Name }}
   template:
     metadata:
       name: mongo
       labels:
         app: reddit
-        component: mongo
+        component: mongodb
         comment-db: "true"
         post-db: "true"
+        release: {{ .Release.Name }}
     spec:
       containers:
-      - image: mongo:3.2
-        name: mongo
+      - image: mongo:4
+        name: mongodb
         volumeMounts:
-        - name: mongo-persistent-storage
+        - name: mongo-data
           mountPath: /data/db
+#TESTONLY
       volumes:
-      - name: mongo-persistent-storage
-        persistentVolumeClaim:
-          claimName: mongo-pvc
+      - name: mongo-data
+        emptyDir: {}

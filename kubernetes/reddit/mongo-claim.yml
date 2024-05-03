@@ -9,4 +9,4 @@ spec:
   resources:
     requests:
       storage: 4Gi
-  volumeName: mongo-ya-pd-storage
+  volumeName: mongo-pv
