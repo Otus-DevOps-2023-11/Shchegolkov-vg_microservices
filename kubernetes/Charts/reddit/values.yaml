@@ -1,0 +1,20 @@
+comment:
+  image:
+    repository: voovik59/comment
+    tag: latest
+  service:
+    externalPort: 9292
+
+post:
+  image:
+    repository: voovik59/post
+    tag: latest
+  service:
+    externalPort: 5000
+
+ui:
+  image:
+    repository: voovik59/ui
+    tag: latest
+  service:
+    externalPort: 9292

@@ -1,0 +1,7 @@
+name: mongodb
+version: 1.0.0
+description: OTUS reddit application post
+maintainers:
+  - name: VladimirShchegolkov
+    email: voovik59@gmail.com
+appVersion: 1.0
