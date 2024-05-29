@@ -9,10 +9,16 @@ metadata:
   annotations:
      kubernetes.io/ingress.class: {{ .Values.ingress.class }}
      kubernetes.io/ingress.allow-http: "false"
+#    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+#  backend:
+#    serviceName: ui
+#    servicePort: 80
+#  ingressClassName: ui
   tls:
   - secretName: ui-ingress
   rules:
+#  - http:
   - host: {{ .Release.Name }}.ui
     http:
       paths:
@@ -20,6 +26,9 @@ spec:
         pathType: Prefix
         backend:
           service:
+#            name: ui
+#            port:
+#              number: 80
             name: {{ .Release.Name }}-{{ .Chart.Name }}
             port:
               number: {{ .Values.service.externalPort }}
@@ -33,3 +42,5 @@ spec:
             name: {{ .Release.Name }}-{{ .Chart.Name }}
             port:
               number: {{ .Values.service.externalPort }}
+#          serviceName: {{ template "ui.fullname" . }}
+#          servicePort: {{ .Values.service.externalPort }}

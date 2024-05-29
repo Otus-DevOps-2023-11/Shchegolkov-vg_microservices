@@ -2,6 +2,6 @@ name: ui
 version: 1.0.0
 description: OTUS reddit application UI
 maintainers:
- - name: VladimirShchegolkov
+ - name: Vladimir Shchegolkov
    email: voovik59@gmail.com
 appVersion: 1.0
