@@ -50,7 +50,6 @@ resource "yandex_kubernetes_cluster" "k8s_cluster_reddit" {
   }
 
   release_channel         = "RAPID"
-  network_policy_provider = "CALICO"
 }
 
 resource "yandex_kubernetes_node_group" "reddit_node_group" {
@@ -73,13 +72,13 @@ resource "yandex_kubernetes_node_group" "reddit_node_group" {
     }
 
     resources {
-      memory = 4
-      cores  = 2
+      memory = 8
+      cores  = 4
     }
 
     boot_disk {
       type = "network-ssd"
-      size = 40
+      size = 64
     }
 
     scheduling_policy {
