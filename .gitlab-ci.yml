@@ -3,16 +3,17 @@ image: ruby:2.4.2
 stages:
   - build
   - test
+  - deploy
   - review
   - stage
   - production
 
 variables:
-  DATABASE_URL: 'mongodb://mongo/user_posts'
+ DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
-  - cd reddit
-  - bundle install
+ - cd reddit
+ - bundle install
 
 build_job:
   stage: build
@@ -22,9 +23,9 @@ build_job:
 test_unit_job:
   stage: test
   services:
-    - mongo:latest
+  - mongo:latest
   script:
-    - ruby simpletest.rb
+  - ruby simpletest.rb
 
 test_integration_job:
   stage: test
@@ -37,7 +38,7 @@ deploy_dev_job:
     - echo 'Deploy'
   environment:
     name: dev
-    url: http://dev.example.com
+    url: http://178.154.229.9
 
 branch review:
   stage: review
@@ -54,18 +55,20 @@ staging:
   stage: stage
   when: manual
   only:
-    - /^\d+\.\d+\.\d+/
+   - /^\d+\.\d+\.\d+/
   script:
-    - echo 'Deploy'
+   - echo 'Deploy'
   environment:
-    name: beta
-    url: http://beta.example.com
+    name: stage
+    url: https://beta.example.com
 
 production:
   stage: production
   when: manual
+  only:
+   - /^\d+\.\d+\.\d+/
   script:
-    - echo 'Deploy'
+   - echo 'Deploy'
   environment:
     name: production
-    url: http://example.com
+    url: https://178.154.229.9
